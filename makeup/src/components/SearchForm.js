@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Form } from 'semantic-ui-react';
 
 const types = ['blush', 'bronzer', 'eyebrow', 'eyeliner', 'eyeshadow', 'foundation', 'lip_liner', 'lipstick', 'mascara', 'nail_polish']
 
@@ -17,7 +18,7 @@ const SearchForm = (props) => {
 
   const submitHandler = (event) => {
     let formattedInput = {
-      brand: input.brand.toLowerCase().replace(' ', '%'),
+      brand: input.brand.toLowerCase().replace(' ', '%20'),
       type: input.type.toLowerCase() 
     }
     props.search(event, formattedInput)
@@ -28,17 +29,23 @@ const SearchForm = (props) => {
   }
 
   return (
-    <div>
-      <form onSubmit={submitHandler}>
-        <label>Brand: </label>
-        <input name='brand' value={input.brand} onChange={inputHandler}/>
-        <label>Product Type: </label>
-        <select name='type' value={input.type} onChange={inputHandler}>
-          <option value='' disabled>Select product type</option>
-          {types.map(item => <option key={item} value={item}>{item[0].toUpperCase() + item.slice(1).replace('_', ' ').toLowerCase()}</option>)}
-        </select>
-        <button>Search</button>
-      </form>
+    <div className='app-form'>
+      <Form onSubmit={submitHandler}>
+        <Form.Group widths='equal'>
+          <Form.Field>
+            <label>Brand: </label>
+            <input name='brand' value={input.brand} onChange={inputHandler}/>
+          </Form.Field>
+          <Form.Field>
+            <label>Product Type: </label>
+            <select name='type' value={input.type} onChange={inputHandler}>
+              <option value='' disabled>Select product type</option>
+              {types.map(item => <option key={item} value={item}>{item[0].toUpperCase() + item.slice(1).replace('_', ' ').toLowerCase()}</option>)}
+            </select>
+          </Form.Field>
+        </Form.Group>
+        <Form.Button color='pink'>Search</Form.Button>
+      </Form>
     </div>
   )
 }

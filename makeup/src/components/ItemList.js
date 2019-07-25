@@ -3,7 +3,7 @@ import Item from './Item';
 
 const ItemList = (props) => {
   return (
-    <div>
+    <div className='app-list'>
       {props.list.map(item => <Item key={item.id} item={item}/>)}
     </div>
   )
