@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+const types = ['blush', 'bronzer', 'eyebrow', 'eyeliner', 'eyeshadow', 'foundation', 'lip_liner', 'lipstick', 'mascara', 'nail_polish']
+
 const SearchForm = (props) => {
   const [input, setInput] = useState({
     brand: '',
@@ -19,6 +21,10 @@ const SearchForm = (props) => {
       type: input.type.toLowerCase() 
     }
     props.search(event, formattedInput)
+    setInput({
+      brand: '',
+      type: ''
+    })
   }
 
   return (
@@ -27,7 +33,10 @@ const SearchForm = (props) => {
         <label>Brand: </label>
         <input name='brand' value={input.brand} onChange={inputHandler}/>
         <label>Product Type: </label>
-        <input name='type' value={input.type} onChange={inputHandler}/>
+        <select name='type' value={input.type} onChange={inputHandler}>
+          <option value='' disabled>Select product type</option>
+          {types.map(item => <option key={item} value={item}>{item[0].toUpperCase() + item.slice(1).replace('_', ' ').toLowerCase()}</option>)}
+        </select>
         <button>Search</button>
       </form>
     </div>

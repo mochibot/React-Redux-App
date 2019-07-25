@@ -16,7 +16,7 @@ const App = (props) => {
     <div className="App">
       <header>
         <h1>Makeup Junkie</h1>
-        <div>Search for your fav product</div>
+        <div>Search for your fav beauty product</div>
       </header>
       <SearchForm search={search}/>
       {props.isFetching && <Loader type='Hearts' color="pink"/>}
