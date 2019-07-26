@@ -18,12 +18,14 @@ const App = (props) => {
     <div className="App">
       <header className='app-header' style={{'backgroundImage': `url(${background})`, 'backgroundPosition': 'center', 'backgroundSize': 'cover', 'backgroundRepeat': 'no-repeat'}}>
         <h1>Makeup Junkie</h1>
-        <div>Search for your fav beauty product</div>
-      </header>
+        <div>Find your favorite beauty product</div>
         <SearchForm search={search}/>
-        {props.isFetching && <Loader type='Hearts' color="pink"/>}
+        
+      </header>
       <div className='app-content'>  
+        {props.isFetching && <Loader type='Puff' color="#e3e3e3" height={150} width={150} />}
         {props.makeupList.length > 0 && <ItemList list={props.makeupList}/>}
+        {props.error && <div>{props.error}</div>}
       </div>
       <footer>
         <div>Source: <a href='http://makeup-api.herokuapp.com/'>Makeup API</a></div>

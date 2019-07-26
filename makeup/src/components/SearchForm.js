@@ -30,14 +30,14 @@ const SearchForm = (props) => {
 
   return (
     <div className='app-form'>
-      <Form onSubmit={submitHandler}>
+      <Form onSubmit={submitHandler} >
         <Form.Group widths='equal'>
           <Form.Field>
-            <label>Brand: </label>
+            <label style={{'fontSize': '18px'}}>Brand: </label>
             <input name='brand' value={input.brand} onChange={inputHandler}/>
           </Form.Field>
           <Form.Field>
-            <label>Product Type: </label>
+            <label style={{'fontSize': '18px'}}>Product Type: </label>
             <select name='type' value={input.type} onChange={inputHandler}>
               <option value='' disabled>Select product type</option>
               {types.map(item => <option key={item} value={item}>{item[0].toUpperCase() + item.slice(1).replace('_', ' ').toLowerCase()}</option>)}
